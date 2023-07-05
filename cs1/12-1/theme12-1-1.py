@@ -9,18 +9,15 @@ class Bank:
     def money_check(self, name):
         return self._amounts[name]
     
-    
+    def withdraw(self,name,yen):
+        return self._amounts[name] - yen if  self._amounts[name]>yen else None
 
 
 bank = Bank({
-    'alice': 1000000,
-    'bob': 1234,
-    'shop': 100000
+    'bob': 1234
 })
 
-bank.transfer('alice', 'bob', 300)
-bank.transfer('bob', 'shop', 10000)
-#bank._amountを直接触るのは好ましくない->
-print(bank._amounts['bob'])
-#直接触らないよい例->
-print(bank.money_check('alice'))
+balance = bank.withdraw('bob',234)
+print(balance)
+balance = bank.withdraw('bob',9999)
+print(balance)
